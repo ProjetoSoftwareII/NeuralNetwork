@@ -9,6 +9,7 @@ import gc
 from tensorflow.keras.backend import clear_session
 from tqdm import tqdm
 import numpy as np
+
 def distancia_euclidiana(embeding1,embeding2):
   sub = embeding1.numpy() - embeding2.numpy()
   square = sub**2
