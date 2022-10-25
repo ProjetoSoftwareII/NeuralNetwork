@@ -24,12 +24,12 @@ def load_image(path):
 images = []
 labels = []
 
-dirs = os.listdir('/content/drive/MyDrive/Colab Notebooks/post-processed')
+dirs = os.listdir('dataset/post-processed')
 #dirs = dirs[:100]
 
 
 for dir_name in tqdm(dirs):
-  dir_path = '/content/drive/MyDrive/Colab Notebooks/post-processed'+'/'+dir_name
+  dir_path = 'dataset/post-processed'+'/'+dir_name
   labels.append(dir_name)
   images.append([])
   for image_name in os.listdir(dir_path):
