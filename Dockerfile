@@ -9,6 +9,7 @@ RUN pip3 install tqdm
 
 WORKDIR /usr/app/src
 
+COPY TripletLoss.py ./
 COPY reconFacial.py ./
 
 CMD [ "python3" , "./reconFacial.py" ]
