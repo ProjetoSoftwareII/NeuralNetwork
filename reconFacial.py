@@ -149,14 +149,14 @@ for epoch in tqdm(range(epochs)):
 
   loss_train = 0
   loss_val =0
-  for i in range(0, len(x_train), 1024):
-    batch_x = x_train[i:i+1024:]
-    batch_y = y_train[i:i+1024:]
+  for i in range(0, len(x_train), 256):
+    batch_x = x_train[i:i+256:]
+    batch_y = y_train[i:i+256:]
     loss_train += train_step(batch_x,batch_y)
 
-  for i in range(0, len(x_val), 1024):
-    batch1_x = x_val[i:i+1024:]
-    batch1_y = y_val[i:i+1024:]
+  for i in range(0, len(x_val), 256):
+    batch1_x = x_val[i:i+256:]
+    batch1_y = y_val[i:i+256:]
     loss_val += val_step(batch1_x,batch1_y)
   #loss_val = val_step(x_val,y_val)
 
