@@ -229,3 +229,4 @@ def batch_hard_triplet_loss(labels, embeddings, margin, squared=False):
     triplet_loss = tf.reduce_mean(triplet_loss)
 
     return triplet_loss
+

@@ -1,3 +1,8 @@
+#builda o docker
 $ docker build -t python_recon .
 
+#remove o docker
 $ docker image rm -f 1cf8c7a612c1
+
+#executa o docker
+$ docker run --gpus all -it -v ~/NeuralNetwork/dataset:/usr/app/src/dataset python_recon

@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM nvidia/cuda:11.0-cudnn8-devel-ubuntu18.04
 
 RUN apt update
 RUN apt install python3 -y

@@ -8,7 +8,7 @@ import tensorflow_addons as tfa
 import gc
 from tensorflow.keras.backend import clear_session
 from tqdm import tqdm
-
+from TripletLoss import *
 #from numpy import uint8
 def load_image(path):
   image = tf.io.read_file(path)
@@ -24,12 +24,12 @@ def load_image(path):
 images = []
 labels = []
 
-dirs = os.listdir('dataset/post-processed')
+dirs = os.listdir('/usr/app/src/dataset/post-processed')
 #dirs = dirs[:100]
 
 
 for dir_name in tqdm(dirs):
-  dir_path = 'dataset/post-processed'+'/'+dir_name
+  dir_path = '/usr/app/src/dataset/post-processed'+'/'+dir_name
   labels.append(dir_name)
   images.append([])
   for image_name in os.listdir(dir_path):
@@ -165,13 +165,13 @@ for epoch in tqdm(range(epochs)):
 
   progress_bar.set_postfix({'loss_train':loss_train,'loss_val':loss_val})
   if epoch%5==0:
-    model.save('/content/drive/MyDrive/Colab Notebooks/epochs/rede_treinada'+'lt'+str(loss_train)+'lv'+str(loss_val)+'epoch'+str(epoch)+'.h5')
+    model.save('/usr/app/src/dataset/ '+' lt: '+str(loss_train)+' lv: '+str(loss_val)+' epoch:'+str(epoch)+'.h5')
   if epoch != 1:
     if (last_loss_val - loss_val) < 0.001:
       tolerance_count+=1
     else:
       tolerance_count=0
-      model.save('/content/drive/MyDrive/Colab Notebooks/rede_treinada.h5')
+      model.save('/usr/app/src/dataset/rede_treinada.h5')
 
   if tolerance_count == tolerance:
     break
