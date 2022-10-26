@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.8.0-base-ubuntu22.04
+FROM tensorflow/tensorflow:latest-gpu
 
 RUN apt update
 RUN apt install python3 -y
