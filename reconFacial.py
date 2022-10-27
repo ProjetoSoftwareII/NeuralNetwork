@@ -105,8 +105,10 @@ def train_step(x,y):
   outputs = []
   losses = 0
   for i in range(0, len(x), 256):
+    
     batch_x = x[i:i+256:]
     batch_y = y[i:i+256:]
+    print("batch shapex:",batch_x.shape,"x shape:",x.shape)
     with tf.GradientTape() as tape:
       outputs += model(batch_x)
       loss = batch_hard_triplet_loss(batch_y,outputs,0.2,squared=True) #calcula loss
