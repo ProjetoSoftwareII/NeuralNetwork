@@ -102,15 +102,22 @@ tolerance = 4
 #
 
 def train_step(x,y):
-  with tf.GradientTape() as tape:
-    outputs = model(x)
-    loss = batch_hard_triplet_loss(y,outputs,0.2,squared=True) #calcula loss
-    grads = tape.gradient(loss,model.trainable_weights) #calcula gradiente
-    optimizer.apply_gradients(zip(grads,model.trainable_weights)) #aplica os pesos
-  return loss
+  losses = 0
+  for i in range(0, len(x), 256):
+    batch_x = x[i:i+256:]
+    batch_y = y[i:i+256:]
+    with tf.GradientTape() as tape:
+      outputs += model(batch_x)
+  loss = batch_hard_triplet_loss(y,outputs,0.2,squared=True) #calcula loss
+  grads = tape.gradient(loss,model.trainable_weights) #calcula gradiente
+  optimizer.apply_gradients(zip(grads,model.trainable_weights)) #aplica os pesos
+  return losses
 
 def val_step(x,y):
-  outputs = model(x)
+  for i in range(0, len(x), 256):
+    batch_x = x[i:i+256:]
+    batch_y = y[i:i+256:]
+    outputs += model(batch_x)
   loss = batch_hard_triplet_loss(y,outputs,0.2,squared=True) #calcula loss
   return loss
 
@@ -147,17 +154,16 @@ tolerance_count = 0
 last_loss_val=0
 for epoch in tqdm(range(epochs)):
 
-  loss_train = 0
-  loss_val =0
-  for i in range(0, len(x_train), 256):
-    batch_x = x_train[i:i+256:]
-    batch_y = y_train[i:i+256:]
-    loss_train += train_step(batch_x,batch_y)
 
-  for i in range(0, len(x_val), 256):
+  '''for i in range(0, len(x_train), 256):
+    batch_x = x_train[i:i+256:]
+    batch_y = y_train[i:i+256:]'''
+  loss_train = train_step(x_train,y_train)
+
+  '''for i in range(0, len(x_val), 256):
     batch1_x = x_val[i:i+256:]
-    batch1_y = y_val[i:i+256:]
-    loss_val += val_step(batch1_x,batch1_y)
+    batch1_y = y_val[i:i+256:]'''
+  loss_val = val_step(x_val,y_val)
   #loss_val = val_step(x_val,y_val)
 
   loss_train = loss_train.numpy()
@@ -165,7 +171,7 @@ for epoch in tqdm(range(epochs)):
 
   progress_bar.set_postfix({'loss_train':loss_train,'loss_val':loss_val})
   if epoch%5==0:
-    model.save('/usr/app/src/dataset/ '+' lt: '+str(loss_train)+' lv: '+str(loss_val)+' epoch:'+str(epoch)+'.h5')
+    model.save('/usr/app/src/dataset/'+'lt: '+str(loss_train)+' lv: '+str(loss_val)+' epoch:'+str(epoch)+'.h5')
   if epoch != 1:
     if (last_loss_val - loss_val) < 0.001:
       tolerance_count+=1
