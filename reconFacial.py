@@ -102,33 +102,17 @@ tolerance = 4
 #
 
 def train_step(x,y):
-  outputs = []
-  losses = 0
-  x = tf.stack(x)
-  y = tf.stack(y)
-  for i in range(0, len(x), 256):
-    
-    batch_x = x[i:i+256:]
-    batch_y = y[i:i+256:]
-    print("batch shapex:",batch_x.shape,"x shape:",x.shape)
-    with tf.GradientTape() as tape:
-      outputs += model(batch_x)
-      loss = batch_hard_triplet_loss(batch_y,outputs,0.2,squared=True) #calcula loss
-      losses+=loss
+  with tf.GradientTape() as tape:
+    outputs = model(x)
+    loss = batch_hard_triplet_loss(y,outputs,0.2,squared=True) #calcula loss
     grads = tape.gradient(loss,model.trainable_weights) #calcula gradiente
     optimizer.apply_gradients(zip(grads,model.trainable_weights)) #aplica os pesos
-  return losses
+  return loss
 
 def val_step(x,y):
-  outputs = []
-  losses = 0
-  for i in range(0, len(x), 256):
-    batch_x = x[i:i+256:]
-    batch_y = y[i:i+256:]
-    outputs += model(batch_x)
-    loss = batch_hard_triplet_loss(batch_y,outputs,0.2,squared=True) #calcula loss
-    lossses+=loss
-  return losses
+  outputs = model(x)
+  loss = batch_hard_triplet_loss(y,outputs,0.2,squared=True) #calcula loss
+  return loss
 
 #
 # termino   Funções de treino e validação durante o treino
@@ -163,16 +147,17 @@ tolerance_count = 0
 last_loss_val=0
 for epoch in tqdm(range(epochs)):
 
-
-  '''for i in range(0, len(x_train), 256):
+  loss_train = 0
+  loss_val =0
+  for i in range(0, len(x_train), 256):
     batch_x = x_train[i:i+256:]
-    batch_y = y_train[i:i+256:]'''
-  loss_train = train_step(x_train,y_train)
+    batch_y = y_train[i:i+256:]
+    loss_train += train_step(batch_x,batch_y)
 
-  '''for i in range(0, len(x_val), 256):
+  for i in range(0, len(x_val), 256):
     batch1_x = x_val[i:i+256:]
-    batch1_y = y_val[i:i+256:]'''
-  loss_val = val_step(x_val,y_val)
+    batch1_y = y_val[i:i+256:]
+    loss_val += val_step(batch1_x,batch1_y)
   #loss_val = val_step(x_val,y_val)
 
   loss_train = loss_train.numpy()
