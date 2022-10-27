@@ -101,6 +101,9 @@ tolerance = 4
 #   Funções de treino e validação durante o treino
 #
 
+#se o treinamento nao correr bem, voltar a separar o dataset dentro da função de treino e validação, caso o erro required broadcastable shapes [Op:AddV2] voltar
+# ver a exception Disable protected access
+
 def train_step(x,y):
   with tf.GradientTape() as tape:
     outputs = model(x)
@@ -142,6 +145,8 @@ x_val = tf.stack(x_val)
 # 
 epochs = 100
 
+batch_size = 512
+
 progress_bar = tqdm(epochs)
 tolerance_count = 0
 last_loss_val=0
@@ -149,14 +154,14 @@ for epoch in tqdm(range(epochs)):
 
   loss_train = 0
   loss_val =0
-  for i in range(0, len(x_train), 256):
-    batch_x = x_train[i:i+256:]
-    batch_y = y_train[i:i+256:]
+  for i in range(0, len(x_train), batch_size):
+    batch_x = x_train[i:i+batch_size:]
+    batch_y = y_train[i:i+batch_size:]
     loss_train += train_step(batch_x,batch_y)
 
-  for i in range(0, len(x_val), 256):
-    batch1_x = x_val[i:i+256:]
-    batch1_y = y_val[i:i+256:]
+  for i in range(0, len(x_val), batch_size):
+    batch1_x = x_val[i:i+batch_size:]
+    batch1_y = y_val[i:i+batch_size:]
     loss_val += val_step(batch1_x,batch1_y)
   #loss_val = val_step(x_val,y_val)
 
@@ -167,7 +172,7 @@ for epoch in tqdm(range(epochs)):
   if epoch%5==0:
     model.save('/usr/app/src/dataset/'+'lt: '+str(loss_train)+' lv: '+str(loss_val)+' epoch:'+str(epoch)+'.h5')
   if epoch != 1:
-    if (last_loss_val - loss_val) < 0.001:
+    if (last_loss_val - loss_val) < 0.00001:
       tolerance_count+=1
     else:
       tolerance_count=0
