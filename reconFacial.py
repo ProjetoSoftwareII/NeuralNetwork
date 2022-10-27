@@ -103,23 +103,27 @@ tolerance = 4
 
 def train_step(x,y):
   outputs = []
+  losses = 0
   for i in range(0, len(x), 256):
     batch_x = x[i:i+256:]
     batch_y = y[i:i+256:]
     with tf.GradientTape() as tape:
       outputs += model(batch_x)
-  loss = batch_hard_triplet_loss(y,outputs,0.2,squared=True) #calcula loss
-  grads = tape.gradient(loss,model.trainable_weights) #calcula gradiente
-  optimizer.apply_gradients(zip(grads,model.trainable_weights)) #aplica os pesos
-  return loss
+      loss = batch_hard_triplet_loss(y,outputs,0.2,squared=True) #calcula loss
+      losses+=loss
+    grads = tape.gradient(loss,model.trainable_weights) #calcula gradiente
+    optimizer.apply_gradients(zip(grads,model.trainable_weights)) #aplica os pesos
+  return losses
 
 def val_step(x,y):
   outputs = []
+  losses = 0
   for i in range(0, len(x), 256):
     batch_x = x[i:i+256:]
     outputs += model(batch_x)
-  loss = batch_hard_triplet_loss(y,outputs,0.2,squared=True) #calcula loss
-  return loss
+    loss = batch_hard_triplet_loss(y,outputs,0.2,squared=True) #calcula loss
+    lossses+=loss
+  return losses
 
 #
 # termino   Funções de treino e validação durante o treino
