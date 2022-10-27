@@ -143,7 +143,7 @@ x_val = tf.stack(x_val)
 #
 # Treino da rede neural
 # 
-epochs = 100
+epochs = 10000
 
 batch_size = 512
 
@@ -170,13 +170,13 @@ for epoch in tqdm(range(epochs)):
 
   progress_bar.set_postfix({'loss_train':loss_train,'loss_val':loss_val})
   if epoch%5==0:
-    model.save('/usr/app/src/dataset/'+'lt: '+str(loss_train)+' lv: '+str(loss_val)+' epoch:'+str(epoch)+'.h5')
+    model.save('/usr/app/src/dataset/treino/'+'lt: '+str(loss_train)+' lv: '+str(loss_val)+' epoch:'+str(epoch)+'.h5')
   if epoch != 1:
-    if (last_loss_val - loss_val) < 0.00001:
+    if (last_loss_val - loss_val) < 0.000001:
       tolerance_count+=1
     else:
       tolerance_count=0
-      model.save('/usr/app/src/dataset/rede_treinada.h5')
+      model.save('/usr/app/src/dataset/treino/rede_treinada.h5')
 
   if tolerance_count == tolerance:
     break
