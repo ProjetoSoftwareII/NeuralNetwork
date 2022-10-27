@@ -145,7 +145,7 @@ x_val = tf.stack(x_val)
 # 
 epochs = 10000
 
-batch_size = 512
+batch_size = 256
 
 progress_bar = tqdm(epochs)
 tolerance_count = 0
