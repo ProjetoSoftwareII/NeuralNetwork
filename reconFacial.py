@@ -104,6 +104,8 @@ tolerance = 4
 def train_step(x,y):
   outputs = []
   losses = 0
+  x = tf.stack(x)
+  y = tf.stack(y)
   for i in range(0, len(x), 256):
     
     batch_x = x[i:i+256:]
