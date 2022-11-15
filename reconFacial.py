@@ -200,7 +200,7 @@ if not teste:
 else:
   model = tf.keras.models.load_model('/usr/app/src/dataset/treino/rede_treinada.h5')
   
-  T = 0.0002
+  T = 0.00018
 
 
   TP = 0
@@ -212,7 +212,7 @@ else:
   count=0
   average_distance_same_sub = 0
   average_distance_dif_sub = 0
-  for i in range(len(test_labels)):
+  for i in tqdm(range(len(test_labels))):
     if len(test_images[i])<=1:
       continue
     img1 = test_images[i][0]
