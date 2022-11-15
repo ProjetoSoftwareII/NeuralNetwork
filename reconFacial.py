@@ -9,6 +9,7 @@ import gc
 from tensorflow.keras.backend import clear_session
 from tqdm import tqdm
 from TripletLoss import *
+import numpy as np
 #from numpy import uint8
 def load_image(path):
   image = tf.io.read_file(path)
