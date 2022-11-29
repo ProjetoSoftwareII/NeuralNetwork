@@ -87,7 +87,7 @@ if not teste:
       weights='imagenet', input_shape= target_shape + (3,), include_top=False
   )
   
-  base_cnn.layers.trainable = False
+  #base_cnn.layers.trainable = False
 
   flatten = layers.Flatten()(base_cnn.output)
   dense1 = layers.Dense(512, activation="relu")(flatten)
