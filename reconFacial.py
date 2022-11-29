@@ -86,6 +86,8 @@ if not teste:
   base_cnn = resnet.ResNet50(
       weights='imagenet', input_shape= target_shape + (3,), include_top=False
   )
+  
+  base_cnn.layers.trainable = False
 
   flatten = layers.Flatten()(base_cnn.output)
   dense1 = layers.Dense(512, activation="relu")(flatten)
@@ -196,7 +198,7 @@ if not teste:
     last_loss_val = loss_val
   #
   # Fim do treino da rede neural
-  #
+  #  
 else:
   model = tf.keras.models.load_model('/usr/app/src/dataset/treino/rede_treinada.h5')
   
