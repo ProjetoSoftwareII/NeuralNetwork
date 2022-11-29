@@ -99,6 +99,9 @@ if not teste:
 
 
   model = Model(base_cnn.input, output, name="layer")
+  
+  for layer in model.layers[:-3]:
+    layer.trainable = False
 
 
   model.compile()
