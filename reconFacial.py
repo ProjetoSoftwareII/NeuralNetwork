@@ -72,7 +72,7 @@ def distancia_euclidiana(embeding1,embeding2):
   return np.sqrt(summatory)
 
 
-teste=True
+teste=False
 
 
 
@@ -190,7 +190,7 @@ if not teste:
     if epoch%5==0:
       model.save('/usr/app/src/dataset/treino/'+'lt: '+str(loss_train)+' lv: '+str(loss_val)+' epoch:'+str(epoch)+'.h5')
     if epoch != 1:
-      if (last_loss_val - loss_val) < 10:
+      if (last_loss_val - loss_val) < 1:
         tolerance_count+=1
       else:
         tolerance_count=0
@@ -203,6 +203,7 @@ if not teste:
   # Fim do treino da rede neural
   #  
 else:
+  #loss de 54% de acerto 'lt: 304.73346 lv: 97.06043 epoch:40.h5'
   model = tf.keras.models.load_model('/usr/app/src/dataset/treino/rede_treinada.h5')
   
   T = 3.63
