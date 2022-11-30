@@ -205,7 +205,7 @@ if not teste:
 else:
   model = tf.keras.models.load_model('/usr/app/src/dataset/treino/rede_treinada.h5')
   
-  T = 0.0002125
+  T = 0.044
 
 
   TP = 0
