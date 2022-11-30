@@ -190,7 +190,7 @@ if not teste:
     if epoch%5==0:
       model.save('/usr/app/src/dataset/treino/'+'lt: '+str(loss_train)+' lv: '+str(loss_val)+' epoch:'+str(epoch)+'.h5')
     if epoch != 1:
-      if (last_loss_val - loss_val) < 0.000001:
+      if (last_loss_val - loss_val) < 0.1:
         tolerance_count+=1
       else:
         tolerance_count=0
@@ -203,7 +203,7 @@ if not teste:
   # Fim do treino da rede neural
   #  
 else:
-  model = tf.keras.models.load_model('/usr/app/src/dataset/treino/rede_treinada.h5')
+  model = tf.keras.models.load_model('/usr/app/src/dataset/treino/lt: 6.8327065 lv: 3.0318775 epoch:180.h5')
   
   T = 0.044
 
