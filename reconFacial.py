@@ -205,7 +205,7 @@ if not teste:
 else:
   model = tf.keras.models.load_model('/usr/app/src/dataset/treino/lt: 6.8327065 lv: 3.0318775 epoch:180.h5')
   
-  T = 0.044
+  T = 0.063
 
 
   TP = 0
