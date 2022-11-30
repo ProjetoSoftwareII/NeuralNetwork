@@ -203,7 +203,7 @@ if not teste:
   # Fim do treino da rede neural
   #  
 else:
-  model = tf.keras.models.load_model('/usr/app/src/dataset/treino/lt: 6.8327065 lv: 3.0318775 epoch:180.h5')
+  model = tf.keras.models.load_model('/usr/app/src/dataset/treino/rede_treinada.h5')
   
   T = 0.063
 
