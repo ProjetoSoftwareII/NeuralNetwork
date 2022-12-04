@@ -204,7 +204,7 @@ if not teste:
   #  
 else:
   #loss de 54% de acerto 'lt: 304.73346 lv: 97.06043 epoch:40.h5'
-  model = tf.keras.models.load_model('/usr/app/src/dataset/treino/rede_treinada.h5')
+  model = tf.keras.models.load_model('/usr/app/src/dataset/treino/lt: 87.30312 lv: 30.92616 epoch:45.h5')
   
   T = 0.98
 
