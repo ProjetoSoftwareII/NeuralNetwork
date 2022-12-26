@@ -22,6 +22,8 @@ img_width = 112
 train_ds = tf.keras.utils.image_dataset_from_directory(
   data_dir,
   validation_split=0.2,
+  labels='inferred',
+  label_mode='categorical',
   subset="training",
   seed=123,
   image_size=(img_height, img_width),
@@ -30,6 +32,8 @@ train_ds = tf.keras.utils.image_dataset_from_directory(
 val_ds = tf.keras.utils.image_dataset_from_directory(
   data_dir,
   validation_split=0.2,
+  labels='inferred',
+  label_mode='categorical',
   subset="validation",
   seed=123,
   image_size=(img_height, img_width),
