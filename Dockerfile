@@ -13,4 +13,4 @@ COPY TripletLoss.py ./
 COPY reconFacial.py ./
 COPY reconFacialDiff.py ./
 
-CMD [ "python3" , "./reconFacial.py" ]
+CMD [ "python3" , "./reconFacialDiff.py" ]
