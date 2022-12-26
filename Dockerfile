@@ -11,5 +11,6 @@ WORKDIR /usr/app/src
 
 COPY TripletLoss.py ./
 COPY reconFacial.py ./
+COPY reconFacialDiff.py ./
 
 CMD [ "python3" , "./reconFacial.py" ]

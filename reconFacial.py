@@ -82,11 +82,10 @@ if not teste:
 #
 #Define a arquitetura da rede neural
 #
-  target_shape = (112,112)
+  target_shape = (112,112,3)
   base_cnn = resnet.ResNet50(
-      weights='imagenet', input_shape= target_shape + (3,), include_top=False
+      weights='imagenet', input_shape= target_shape, include_top=False
   )
-  
   #base_cnn.layers.trainable = False
 
   flatten = layers.Flatten()(base_cnn.output)
@@ -96,16 +95,16 @@ if not teste:
   dense2 = layers.BatchNormalization()(dense2)
   output = layers.Dense(256)(dense2)
 
-
-
   model = Model(base_cnn.input, output, name="layer")
   
   for layer in model.layers[:-3]:
     layer.trainable = False
 
 
+  '''model.compile(
+    optimizer=tf.keras.optimizers.Adam(0.001),
+    loss=tfa.losses.TripletSemiHardLoss())'''
   model.compile()
-
 
   learning_rate = 2e-5
   optimizer = tf.keras.optimizers.Adam(learning_rate=learning_rate)
