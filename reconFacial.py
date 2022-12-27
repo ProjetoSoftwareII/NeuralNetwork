@@ -202,7 +202,8 @@ if not teste:
         tolerance_count=0
         model.save('/usr/app/src/dataset/treino/rede_treinada.h5')
 
-    if tolerance_count == tolerance:
+    #if tolerance_count == tolerance:
+    if epoch == 500:
       break
     last_loss_val = loss_val
   #
