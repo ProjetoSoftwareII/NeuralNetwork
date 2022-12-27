@@ -73,7 +73,7 @@ def distancia_euclidiana(embeding1,embeding2):
 
 
 
-teste=True
+teste=False
 
 
 
