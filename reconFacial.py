@@ -71,6 +71,16 @@ def distancia_euclidiana(embeding1,embeding2):
   summatory = np.sum(square)
   return np.sqrt(summatory)
 
+tf.keras.applications.resnet50.preprocess_input(
+    train_images, data_format=None
+)
+tf.keras.applications.resnet50.preprocess_input(
+    val_images, data_format=None
+)
+tf.keras.applications.resnet50.preprocess_input(
+    test_images, data_format=None
+)
+
 
 teste=True
 
@@ -209,7 +219,7 @@ else:
   
   T = 3.4
   #t funcionando 0.98
-
+  # 59% t a 3.1
   TP = 0
   FN = 0
 
