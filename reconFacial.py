@@ -82,7 +82,7 @@ tf.keras.applications.resnet50.preprocess_input(
 )
 
 
-teste=True
+teste=False
 
 
 
