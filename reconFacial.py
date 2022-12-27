@@ -71,15 +71,6 @@ def distancia_euclidiana(embeding1,embeding2):
   summatory = np.sum(square)
   return np.sqrt(summatory)
 
-tf.keras.applications.resnet50.preprocess_input(
-    train_images, data_format=None
-)
-tf.keras.applications.resnet50.preprocess_input(
-    val_images, data_format=None
-)
-tf.keras.applications.resnet50.preprocess_input(
-    test_images, data_format=None
-)
 
 
 teste=False
@@ -165,6 +156,12 @@ if not teste:
 
   x_train = tf.stack(x_train)
   x_val = tf.stack(x_val)
+  tf.keras.applications.resnet50.preprocess_input(
+      x_train, data_format=None
+  )
+  tf.keras.applications.resnet50.preprocess_input(
+      x_val, data_format=None
+  )
   ######### termino da separação
 
   #
@@ -225,7 +222,13 @@ else:
 
   TN = 0
   FP = 0
+  test_images = tf.stack(test_images)
+  
+  tf.keras.applications.resnet50.preprocess_input(
+    test_images, data_format=None
+  )
 
+  
   count=0
   average_distance_same_sub = 0
   average_distance_dif_sub = 0
