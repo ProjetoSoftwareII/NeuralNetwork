@@ -72,7 +72,7 @@ def distancia_euclidiana(embeding1,embeding2):
   return np.sqrt(summatory)
 
 
-teste=True
+teste=False
 
 
 
