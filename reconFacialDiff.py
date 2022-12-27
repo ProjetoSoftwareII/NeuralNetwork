@@ -25,8 +25,7 @@ train_ds = tf.keras.utils.image_dataset_from_directory(
   labels='inferred',
   subset="training",
   seed=123,
-  image_size=(img_height, img_width),
-  batch_size=batch_size)
+  image_size=(img_height, img_width))
 
 val_ds = tf.keras.utils.image_dataset_from_directory(
   data_dir,
@@ -34,8 +33,7 @@ val_ds = tf.keras.utils.image_dataset_from_directory(
   labels='inferred',
   subset="validation",
   seed=123,
-  image_size=(img_height, img_width),
-  batch_size=batch_size)
+  image_size=(img_height, img_width))
 
 tf.keras.applications.resnet50.preprocess_input( train_ds, data_format=None)
 tf.keras.applications.resnet50.preprocess_input( val_ds, data_format=None)

@@ -106,7 +106,7 @@ if not teste:
     loss=tfa.losses.TripletSemiHardLoss())'''
   model.compile()
 
-  learning_rate = 2e-5
+  learning_rate = 0.001
   optimizer = tf.keras.optimizers.Adam(learning_rate=learning_rate)
   tolerance = 4
 
@@ -123,10 +123,10 @@ if not teste:
 
   def train_step(x,y):
     with tf.GradientTape() as tape:
-      outputs = model(x)
+      outputs = model(x,training=True)
       loss = batch_hard_triplet_loss(y,outputs,0.2,squared=True) #calcula loss
-      grads = tape.gradient(loss,model.trainable_weights) #calcula gradiente
-      optimizer.apply_gradients(zip(grads,model.trainable_weights)) #aplica os pesos
+    grads = tape.gradient(loss,model.trainable_weights) #calcula gradiente
+    optimizer.apply_gradients(zip(grads,model.trainable_weights)) #aplica os pesos
     return loss
 
   def val_step(x,y):
