@@ -72,7 +72,7 @@ def distancia_euclidiana(embeding1,embeding2):
   return np.sqrt(summatory)
 
 
-teste=True
+teste=False
 
 
 
@@ -189,7 +189,7 @@ if not teste:
     if epoch%5==0:
       model.save('/usr/app/src/dataset/treino/'+'lt: '+str(loss_train)+' lv: '+str(loss_val)+' epoch:'+str(epoch)+'.h5')
     if epoch != 1:
-      if (last_loss_val - loss_val) < 1:
+      if (last_loss_val - loss_val) < 0.001:
         tolerance_count+=1
       else:
         tolerance_count=0
