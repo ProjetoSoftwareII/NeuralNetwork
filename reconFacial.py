@@ -73,7 +73,7 @@ def distancia_euclidiana(embeding1,embeding2):
 
 
 
-teste=False
+teste=True
 
 
 
@@ -222,11 +222,7 @@ else:
 
   TN = 0
   FP = 0
-  test_images = tf.stack(test_images)
   
-  tf.keras.applications.resnet50.preprocess_input(
-    test_images, data_format=None
-  )
 
   
   count=0
@@ -238,6 +234,14 @@ else:
     img1 = test_images[i][0]
     img2 = test_images[i][1]
 
+    img1 = tf.stack(img1)
+    img2 = tf.stack(img2)
+    tf.keras.applications.resnet50.preprocess_input(
+      img1, data_format=None
+    )
+    tf.keras.applications.resnet50.preprocess_input(
+      img2, data_format=None
+    )
     img1 = tf.expand_dims(img1,0)
     emb1 = model(img1)
     img2 = tf.expand_dims(img2,0)
