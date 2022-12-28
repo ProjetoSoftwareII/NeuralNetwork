@@ -73,7 +73,7 @@ def distancia_euclidiana(embeding1,embeding2):
 
 
 
-teste=True
+teste=False
 
 
 
@@ -203,8 +203,8 @@ if not teste:
         model.save('/usr/app/src/dataset/treino/rede_treinada.h5')
 
     #if tolerance_count == tolerance:
-    if epoch == 500:
-      break
+    if epoch%500 == 0:
+      model.save('/usr/app/src/dataset/treino/'+' epoch:'+str(epoch)+'.h5')
     last_loss_val = loss_val
   #
   # Fim do treino da rede neural
