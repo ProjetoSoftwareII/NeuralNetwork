@@ -162,6 +162,8 @@ if not teste:
   tf.keras.applications.resnet50.preprocess_input(
       x_val, data_format=None
   )
+  x_train = x_train / np.float32(255)
+  x_val = x_val / np.float32(255)
   ######### termino da separação
 
   #
