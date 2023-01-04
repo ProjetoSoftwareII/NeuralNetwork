@@ -246,6 +246,8 @@ else:
     tf.keras.applications.resnet50.preprocess_input(
       img2, data_format=None
     )
+    img1 = img1 / np.float32(255)
+    img2 = img2 / np.float32(255)
     img1 = tf.expand_dims(img1,0)
     emb1 = model(img1)
     img2 = tf.expand_dims(img2,0)
@@ -267,6 +269,7 @@ else:
     tf.keras.applications.resnet50.preprocess_input(
       img3, data_format=None
     )
+    img3 = img3 / np.float32(255)
     img3 = tf.expand_dims(img3,0)
     emb3 = model(img3)
 
