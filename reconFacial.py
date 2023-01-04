@@ -11,6 +11,7 @@ from tqdm import tqdm
 from TripletLoss import *
 import numpy as np
 #from numpy import uint8
+os.environ["CUDA_VISIBLE_DEVICES"]="1" # second gpu
 def load_image(path):
   image = tf.io.read_file(path)
   image = tf.io.decode_image(image)
@@ -215,7 +216,6 @@ else:
   #loss de 54% de acerto 'lt: 304.73346 lv: 97.06043 epoch:40.h5'
   #loss de  52   de acerto 'lt: 87.30312 lv: 30.92616 epoch:45.h5' T 1.29
   #loss de 53% de acerto 'lt: 120.85935 lv: 41.15373 epoch:40.h5'
-  os.environ["CUDA_VISIBLE_DEVICES"]="1" # second gpu
   model = tf.keras.models.load_model('/usr/app/src/dataset/treino/lt: 6.599998 lv: 2.0000002 epoch:1600.h5')
   
   T = 9.1
