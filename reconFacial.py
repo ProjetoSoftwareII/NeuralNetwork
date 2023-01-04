@@ -262,7 +262,11 @@ else:
       img3 = test_images[i+1][0]
     else:
       img3 = test_images[1][0]
-    
+      
+    img3 = tf.stack(img3)
+    tf.keras.applications.resnet50.preprocess_input(
+      img3, data_format=None
+    )
     img3 = tf.expand_dims(img3,0)
     emb3 = model(img3)
 
