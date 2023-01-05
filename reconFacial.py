@@ -163,8 +163,8 @@ if not teste:
   tf.keras.applications.resnet50.preprocess_input(
       x_val, data_format=None
   )
-  x_train = x_train / np.float32(255)
-  x_val = x_val / np.float32(255)
+  #x_train = x_train / np.float32(255)
+  #x_val = x_val / np.float32(255)
   ######### termino da separação
 
   #
@@ -218,7 +218,7 @@ else:
   #loss de 53% de acerto 'lt: 120.85935 lv: 41.15373 epoch:40.h5'
   model = tf.keras.models.load_model('/usr/app/src/dataset/treino/rede65%_T_9.h5')
   
-  T = 0.86
+  T = 9.1
   #t funcionando 0.98
   # 59% t a 3.1
   TP = 0
@@ -238,8 +238,8 @@ else:
     img1 = test_images[i][0]
     img2 = test_images[i][1]
 
-    img1 = img1 / np.float32(255)
-    img2 = img2 / np.float32(255)
+    #img1 = img1 / np.float32(255)
+    #img2 = img2 / np.float32(255)
     img1 = tf.stack(img1)
     img2 = tf.stack(img2)
     tf.keras.applications.resnet50.preprocess_input(
@@ -265,7 +265,7 @@ else:
     else:
       img3 = test_images[1][0]
       
-    img3 = img3 / np.float32(255)
+    #img3 = img3 / np.float32(255)
     img3 = tf.stack(img3)
     tf.keras.applications.resnet50.preprocess_input(
       img3, data_format=None
