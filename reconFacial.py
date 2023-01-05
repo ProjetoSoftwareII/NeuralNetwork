@@ -218,7 +218,7 @@ else:
   #loss de 53% de acerto 'lt: 120.85935 lv: 41.15373 epoch:40.h5'
   model = tf.keras.models.load_model('/usr/app/src/dataset/treino/rede65%_T_9.h5')
   
-  T = 9.1
+  T = 0.86
   #t funcionando 0.98
   # 59% t a 3.1
   TP = 0
