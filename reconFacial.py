@@ -74,7 +74,7 @@ def distancia_euclidiana(embeding1,embeding2):
 
 
 
-teste=True
+teste=False
 
 
 
@@ -97,11 +97,13 @@ if not teste:
   dense2 = layers.BatchNormalization()(dense2)
   output = layers.Dense(256)(dense2)
 
-  model = Model(base_cnn.input, output, name="layer")
+  #model = Model(base_cnn.input, output, name="layer")
   
+  
+  
+  model = tf.keras.models.load_model('/usr/app/src/dataset/treino/rede65%_T_9.h5')
   for layer in model.layers[:-3]:
-    layer.trainable = False
-
+    layer.trainable = True
 
   '''model.compile(
     optimizer=tf.keras.optimizers.Adam(0.001),
@@ -206,7 +208,7 @@ if not teste:
         model.save('/usr/app/src/dataset/treino/rede_treinada.h5')
 
     #if tolerance_count == tolerance:
-    if epoch%500 == 0:
+    if epoch%10 == 0:
       model.save('/usr/app/src/dataset/treino/'+'epoch:'+str(epoch)+'.h5')
     last_loss_val = loss_val
   #
