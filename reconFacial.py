@@ -218,7 +218,7 @@ else:
   #loss de 54% de acerto 'lt: 304.73346 lv: 97.06043 epoch:40.h5'
   #loss de  52   de acerto 'lt: 87.30312 lv: 30.92616 epoch:45.h5' T 1.29
   #loss de 53% de acerto 'lt: 120.85935 lv: 41.15373 epoch:40.h5'
-  model = tf.keras.models.load_model('/usr/app/src/dataset/treino/lt: 6.624336 lv: 2.009137 epoch:400.h5')
+  model = tf.keras.models.load_model('/usr/app/src/dataset/treino/lt: 7.9306393 lv: 2.6954334 epoch:200.h5')
   # lt: 6.624336 lv: 2.009137 epoch:400.h5 t0.025 66%
   T = 0.026
   #t funcionando 0.98
